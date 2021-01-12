@@ -19,6 +19,7 @@ use App\Http\Controllers\UserController;
 
 Route::post('login', [UserController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function(){
+    Route::post('logout', [UserController::class, 'logout']);
     Route::group(['prefix' => 'user'], function () {
         Route::get('/',[UserController::class, 'get']);     
         Route::get('list',[UserController::class, 'list']);     

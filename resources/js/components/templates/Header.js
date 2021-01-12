@@ -1,9 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from "recoil";
 import { authUser } from '../store/Index';
+import Api from '../Api';
 
 const ForgotPassword = () =>{
     const user = useRecoilValue(authUser)
+    const history = useHistory();
+    const [isLoading, setIsloading] = useState(false);
+
+    const handleSignOut = async () => {
+        setIsloading(true)
+        try {
+            await Api.logout().then(
+                (res) => {
+                    if(res.status == 200){
+                        // revoking token
+                        console.log(res)
+                        localStorage.removeItem('access_token');
+                        history.push('/login')
+                    }
+                    else {
+                        alert(res.data.data.message)
+                    }
+                }
+            ).catch(
+                (err) => {
+                if(err.response.status){
+                    alert('something went wrong')
+                }
+            }
+            );
+        } catch (err) {
+            console.log('error on logout')
+        }
+        finally {
+            setIsloading(false)
+        }
+    }
 
 
     return(
@@ -25,11 +59,11 @@ const ForgotPassword = () =>{
                         <li className="dropdown notifications-menu">
                             <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <i className="fa fa-bell-o" />
-                                <span className="label label-warning">33</span>
+                                {/* <span className="label label-warning">33</span> */}
                             </a>
                             <ul className="dropdown-menu" style={{width: '400px !important'}}>
-                                <li className="header">Kamu Punya 4 notifikasi</li>
-                                <li>
+                                <li className="header">-</li>
+                                {/* <li>
                                     <ul className="menu">
                                         <li>
                                             <a href="{{ url('sk/list') }}?f_status_sk=mohon_1">
@@ -38,7 +72,7 @@ const ForgotPassword = () =>{
                                             </a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> */}
                             </ul>
                         </li>
                         <li className="dropdown user user-menu">
@@ -49,7 +83,7 @@ const ForgotPassword = () =>{
                         <ul className="dropdown-menu">
                             <li className="user-footer">
                             <div>
-                                <button className="btn btn-default" type="submit">Sign Out</button>
+                                <button className="btn btn-default" type="button" onClick={handleSignOut} >Sign Out</button>
                             </div>
                             </li>
                         </ul>

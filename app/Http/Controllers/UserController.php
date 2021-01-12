@@ -38,6 +38,8 @@ class UserController extends Controller
                     'message' => 'unauthorized',
                 ], 'unauthenticate', 401);
             }
+            $user->last_login = Carbon::now()->toDateTimeString();
+            $user->save();
 
             // jika berhasil maka
             $tokenResult = $user->createToken('authToken')->plainTextToken;
@@ -54,6 +56,17 @@ class UserController extends Controller
             ], 'authenticated failed', 500);
         }
         
+    }
+
+    // logout 
+    public function logout(Request $request){
+        return $request->all();
+        // revoking user
+        // return message
+        $token = $request->user()->currentAccessToken();
+        $token = $request->user()->currentAccessToken()->delete();
+        return ResponseFormatter::success(
+            $token, 'token revoked');
     }
 
     // get userlist

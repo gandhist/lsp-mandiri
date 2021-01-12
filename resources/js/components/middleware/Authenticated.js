@@ -9,8 +9,6 @@ const Authenticated = (props) => {
     const history = useHistory();
     useEffect( () => {
         if(!auth.check){
-            document.getElementsByTagName('body').className='darktheme'
-            document.getElementsById('wrapper').className='wrapper'
             history.push('/login')
         }
     }, [auth.check])

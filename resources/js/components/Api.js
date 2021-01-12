@@ -1,6 +1,13 @@
 const axios = window.axios;
 
-const token = JSON.parse(localStorage.getItem('access_token')).access_token.access_token
+const storage = JSON.parse(localStorage.getItem('access_token'));
+
+let token = '';
+if(storage != null){
+    // console.log(storage)
+    token = storage.access_token.access_token
+    // console.log(token)
+}
 
 const BASE_URL = 'http://127.0.0.1:8000/api';
 
@@ -15,6 +22,7 @@ const headers = {
 
 export default { 
     login : (data) => axios.post(`${BASE_URL}/login`,data),
+    logout : (data) => axios.post(`${BASE_URL}/logout`, data, headers),
     getUser : () => axios.get(`${BASE_URL}/user`, headers),
     getListUsers : () => axios.get(`${BASE_URL}/user/list`, headers),
     storeUser : (data) => axios.post(`${BASE_URL}/user/store`, data, headers),

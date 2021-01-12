@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {NavLink, Link, useHistory} from 'react-router-dom';
-import Api from './Api';
 
 const Login = () => {
 
@@ -14,37 +13,37 @@ const Login = () => {
     const handleLogin = async () => {
         setLoading(true)
         try {
-            await Api.login({
-                username, password
-            }).then(
-                (res) => {
-                    // 200 authorized
-                    if(res.status == 200){
-                        // save token to localstorage
-                        console.log(res.data)
-                        localStorage.setItem('access_token',JSON.stringify({login : true, access_token : res.data.data}))
+            await fetch('http://127.0.0.1:8000/api/login', {
+            method: "POST",
+            headers : {
+              'Accept' : 'application/json',
+              'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify({
+                    username, password
+                })
+          }).then(
+            (res) => {
+                console.log(res)
+                // if username and password wrong 
+                if(res.status === 500){
+                    alert('invalid username and password')
+                }
+                else if(res.status === 422){
+                  res.json().then((res) => {
+                    alert(res.message)
+                  })
+                }
+                else {
+                    res.json().then((res) => {
+                        // console.warn("result", res)
+                        localStorage.setItem('access_token', JSON.stringify({login: true, access_token : res.data}))
                         history.push('/')
-                    }
-                    else {
-                        alert(res.data.data.message)
-                    }
+                      })
                 }
-            ).catch(
-                (err) => {
-                    if(err.response.status == 422){
-                        alert('data yang di input tidak boleh kosong')
-                    }
-                }
-            )
-        //     const s = await fetch('http://127.0.0.1:8000/api/login', {
-        //     method: "POST",
-        //     headers : {
-        //       'Accept' : 'application/json',
-        //       'Content-Type' : 'application/json',
-        //     },
-        //     body: JSON.stringify()
-        //   });
-        //   console.log(s)
+            }
+          );
+
         } catch {
             console.log('error on login')
         } finally {
