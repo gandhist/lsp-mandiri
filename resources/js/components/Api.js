@@ -17,14 +17,15 @@ const headers = {
         'Content-Type' : 'application/json',
         'Authorization' : `Bearer ${token}`
     }
-    
+
 }
 
-export default { 
+export default {
     login : (data) => axios.post(`${BASE_URL}/login`,data),
     logout : (data) => axios.post(`${BASE_URL}/logout`, data, headers),
     getUser : () => axios.get(`${BASE_URL}/user`, headers),
     getListUsers : () => axios.get(`${BASE_URL}/user/list`, headers),
     storeUser : (data) => axios.post(`${BASE_URL}/user/store`, data, headers),
+    getKantor : () => axios.get(`${BASE_URL}/kantor`, headers),
 
 }

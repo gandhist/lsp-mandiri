@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // controller
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KantorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,11 @@ Route::post('login', [UserController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('logout', [UserController::class, 'logout']);
     Route::group(['prefix' => 'user'], function () {
-        Route::get('/',[UserController::class, 'get']);     
-        Route::get('list',[UserController::class, 'list']);     
-        Route::post('store',[UserController::class, 'store']);     
+        Route::get('/',[UserController::class, 'get']);
+        Route::get('list',[UserController::class, 'list']);
+        Route::post('store',[UserController::class, 'store']);
+    });
+    Route::group(['prefix' => 'kantor'], function () {
+        Route::get('',[KantorController::class, 'index']);
     });
 });
