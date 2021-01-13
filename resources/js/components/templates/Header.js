@@ -67,7 +67,7 @@ const ForgotPassword = () =>{
                                     <ul className="menu">
                                         <li>
                                             <a href="{{ url('sk/list') }}?f_status_sk=mohon_1">
-                                                <i className="fa fa-users text-aqua" /> 
+                                                <i className="fa fa-users text-aqua" />
                                                 Telah mendaftar
                                             </a>
                                         </li>
@@ -77,7 +77,7 @@ const ForgotPassword = () =>{
                         </li>
                         <li className="dropdown user user-menu">
                         <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                            <img src="AdminLTE-2.3.11/dist/img/avatar.png" className="user-image" alt="User Image" />
+                            <img src="/AdminLTE-2.3.11/dist/img/avatar.png" className="user-image" alt="User Image" />
                             <span className="hidden-xs">{user.data.name}</span>
                         </a>
                         <ul className="dropdown-menu">
