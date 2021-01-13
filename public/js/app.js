@@ -85332,20 +85332,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var levelOpt = [{
-  value: '1',
-  label: 'Pusat'
-}, {
-  value: '2',
-  label: 'Wilayah'
-}];
-var kantorOpt = [{
-  value: '1',
-  label: 'Kantor Jakarta'
-}, {
-  value: '2',
-  label: 'Kantor Padang'
-}];
 
 var ListKantor = function ListKantor() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
@@ -85353,10 +85339,30 @@ var ListKantor = function ListKantor() {
       kantor = _useState2[0],
       setKantor = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      isLoading = _useState4[0],
-      setIsLoading = _useState4[1];
+      levelOpt = _useState4[0],
+      setlevelOpt = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      kantorOpt = _useState6[0],
+      setkantorOption = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      provOpt = _useState8[0],
+      setprovOption = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      kotaOpt = _useState10[0],
+      setkotaOption = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
+      _useState12 = _slicedToArray(_useState11, 2),
+      isLoading = _useState12[0],
+      setIsLoading = _useState12[1];
 
   var getKantor = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -85368,6 +85374,10 @@ var ListKantor = function ListKantor() {
               _context.next = 3;
               return _Api__WEBPACK_IMPORTED_MODULE_4__["default"].getKantor().then(function (res) {
                 setKantor(res.data.data);
+                levelOption(res.data.data[0]);
+                kantorOption(res.data.data[3]);
+                provOption(res.data.data[1]);
+                kotaOption(res.data.data[2]);
               });
 
             case 3:
@@ -85400,6 +85410,66 @@ var ListKantor = function ListKantor() {
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     getKantor();
   }, []);
+
+  var levelOption = function levelOption(params) {
+    if (typeof params == 'undefined') {
+      console.log('null');
+    } else {
+      var opt = [];
+      params.map(function (key, item) {
+        opt.push({
+          value: key.id,
+          label: key.nama_level
+        });
+      });
+      setlevelOpt(opt);
+    }
+  };
+
+  var kantorOption = function kantorOption(params) {
+    if (typeof params == 'undefined') {
+      console.log('null');
+    } else {
+      var opt = [];
+      params.map(function (key, item) {
+        opt.push({
+          value: key.id,
+          label: key.nama_kantor
+        });
+      });
+      setkantorOption(opt);
+    }
+  };
+
+  var provOption = function provOption(params) {
+    if (typeof params == 'undefined') {
+      console.log('null');
+    } else {
+      var opt = [];
+      params.map(function (key, item) {
+        opt.push({
+          value: key.id,
+          label: key.nama
+        });
+      });
+      setprovOption(opt);
+    }
+  };
+
+  var kotaOption = function kotaOption(params) {
+    if (typeof params == 'undefined') {
+      console.log('null');
+    } else {
+      var opt = [];
+      params.map(function (key, item) {
+        opt.push({
+          value: key.id,
+          label: key.nama
+        });
+      });
+      setkotaOption(opt);
+    }
+  };
 
   var renderKantor = function renderKantor() {
     if (isLoading) {
@@ -85464,10 +85534,15 @@ var ListKantor = function ListKantor() {
     className: "input-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
     options: levelOpt,
-    className: "select2"
+    className: "select2",
+    placeholder: "Level_Kantor"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "input-group"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    options: provOpt,
+    className: "select2",
+    placeholder: "Provinsi"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "submit",
     className: "btn btn-md btn-info"
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
@@ -85481,10 +85556,15 @@ var ListKantor = function ListKantor() {
     className: "input-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
     options: kantorOpt,
-    className: "select2"
+    className: "select2",
+    placeholder: "Kantor"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "input-group"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    options: kotaOpt,
+    className: "select2",
+    placeholder: "Kota"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-sm-7"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-sm-2"
@@ -85498,7 +85578,7 @@ var ListKantor = function ListKantor() {
   }), "Tambah"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
     id: "data-tables",
     className: "table table-striped table-bordered dataTable customTable"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Aksi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "No"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Nama_Ktr"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Level_Ktr"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Provinsi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Nama_Pimp"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Kontak_P"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Keterangan"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "U_Tambah"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "U_Ubah"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, renderKantor())))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Aksi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "No"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Nama_Ktr"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Level_Ktr"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Prov"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Nama_Pimp"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Kontak_P"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Keterangan"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "U_Tambah"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "U_Ubah"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, renderKantor())))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ListKantor);

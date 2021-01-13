@@ -3,24 +3,22 @@ import Select from 'react-select';
 import './Kantor.css';
 import Api from '../Api';
 
-const levelOpt = [
-    { value: '1', label: 'Pusat' },
-    { value: '2', label: 'Wilayah' }
-]
-
-const kantorOpt = [
-    { value: '1', label: 'Kantor Jakarta' },
-    { value: '2', label: 'Kantor Padang' }
-]
-
 const ListKantor = () =>{
     const [kantor, setKantor] = useState([]);
+    const [levelOpt, setlevelOpt ] = useState([]);
+    const [kantorOpt, setkantorOption ] = useState([]);
+    const [provOpt, setprovOption ] = useState([]);
+    const [kotaOpt, setkotaOption ] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const getKantor = async () => {
         try {
             await Api.getKantor().then(res => {
                 setKantor(res.data.data)
+                levelOption(res.data.data[0])
+                kantorOption(res.data.data[3])
+                provOption(res.data.data[1])
+                kotaOption(res.data.data[2])
             })
         } catch (error) {
             console.error('asasd',error.message)
@@ -33,6 +31,66 @@ const ListKantor = () =>{
     useEffect(() => {
         getKantor()
     }, [])
+
+    const levelOption = (params) => {
+        if(typeof params == 'undefined'){
+            console.log('null')
+        } else{
+            let opt = []
+            params.map((key, item) => {
+                opt.push({
+                    value:key.id,
+                    label:key.nama_level
+                })
+            })
+            setlevelOpt(opt)
+        }
+    }
+
+    const kantorOption = (params) => {
+        if(typeof params == 'undefined'){
+            console.log('null')
+        } else{
+            let opt = []
+            params.map((key, item) => {
+                opt.push({
+                    value:key.id,
+                    label:key.nama_kantor
+                })
+            })
+            setkantorOption(opt)
+        }
+    }
+
+    const provOption = (params) => {
+        if(typeof params == 'undefined'){
+            console.log('null')
+        } else{
+            let opt = []
+            params.map((key, item) => {
+                opt.push({
+                    value:key.id,
+                    label:key.nama
+                })
+            })
+            setprovOption(opt)
+        }
+    }
+
+    const kotaOption = (params) => {
+        if(typeof params == 'undefined'){
+            console.log('null')
+        } else{
+            let opt = []
+            params.map((key, item) => {
+                opt.push({
+                    value:key.id,
+                    label:key.nama
+                })
+            })
+            setkotaOption(opt)
+        }
+    }
 
     const renderKantor = () => {
         if(isLoading){
@@ -105,7 +163,7 @@ const ListKantor = () =>{
                                                 <tr>
                                                     <td>
                                                         <div className="input-group">
-                                                            <Select options={levelOpt} className="select2" />
+                                                            <Select options={levelOpt} className="select2" placeholder='Level_Kantor' />
                                                             {/* <select className="form-control select2" name="f_level" id="f_level">
                                                                 <option selected value="1">Level_Kantor</option>
                                                             </select> */}
@@ -113,6 +171,7 @@ const ListKantor = () =>{
                                                     </td>
                                                     <td>
                                                         <div className="input-group">
+                                                            <Select options={provOpt} className="select2" placeholder='Provinsi' />
                                                             {/* <select className="form-control select2" name="f_provinsi" id="f_provinsi">
                                                                 <option value="1">Provinsi</option>
                                                             </select> */}
@@ -131,7 +190,7 @@ const ListKantor = () =>{
                                                 <tr>
                                                     <td>
                                                         <div className="input-group">
-                                                        <Select options={kantorOpt} className="select2" />
+                                                            <Select options={kantorOpt} className="select2" placeholder='Kantor' />
                                                             {/* <select className="form-control select2" name="f_kantor" id="f_kantor">
                                                                 <option selected value="1">Kantor</option>
                                                             </select> */}
@@ -140,6 +199,7 @@ const ListKantor = () =>{
 
                                                     <td>
                                                         <div className="input-group">
+                                                            <Select options={kotaOpt} className="select2" placeholder='Kota' />
                                                             {/* <select className="form-control select2" name="f_kota" id="f_kota">
                                                                 <option selected value="1">Kota</option>
                                                             </select> */}
@@ -184,7 +244,7 @@ const ListKantor = () =>{
                                         <th>No</th>
                                         <th>Nama_Ktr</th>
                                         <th>Level_Ktr</th>
-                                        <th>Provinsi</th>
+                                        <th>Prov</th>
                                         <th>Nama_Pimp</th>
                                         <th>Kontak_P</th>
                                         <th>Keterangan</th>
