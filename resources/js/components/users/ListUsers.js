@@ -64,39 +64,37 @@ const ListUsers = () =>{
 
     return (
         <Index title="User Management">
-            
-                        <div className="box-body">
 
-                            {/* <div className="alert alert-success alert-dismissible fade in"> {{ session()->get('message') }}
-                                <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            </div> */}
-                            <div style={{marginBottom: '20px'}}>
-                                {/* <Add /> */}
-                                <NavLink to="/users/add" className="btn bg-olive"><span>Input</span></NavLink>
-                            </div>
-                            {/* sub menu */}
-                            <table  className="table table-striped table-bordered" cellSpacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Nama</th>
-                                        <th>User Name</th>
-                                        <th>Jabatan</th>
-                                        <th>Tgl Input</th>
-                                        <th>Aktif</th>
-                                        <th>Action</th>
-                                        <th>U_Tambah</th>
-                                        <th>U_Ubah</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                   {renderListUsers()}
-                                </tbody>
-                            </table>
-                        </div>
-                    
-                   
-            
+            <div className="box-body">
+
+                {/* <div className="alert alert-success alert-dismissible fade in"> {{ session()->get('message') }}
+                    <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div> */}
+                <div style={{marginBottom: '20px'}}>
+                    {/* <Add /> */}
+                    <NavLink to="/users/add" className="btn bg-olive"><span>Input</span></NavLink>
+                </div>
+                {/* sub menu */}
+                <table  className="table table-striped table-bordered" cellSpacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama</th>
+                            <th>User Name</th>
+                            <th>Jabatan</th>
+                            <th>Tgl Input</th>
+                            <th>Aktif</th>
+                            <th>Action</th>
+                            <th>U_Tambah</th>
+                            <th>U_Ubah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {renderListUsers()}
+                    </tbody>
+                </table>
+            </div>
+
         </Index>
     );
 }

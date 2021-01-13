@@ -15,4 +15,4 @@ yarn-error.log
 
 composer.lock
 package-lock.json
-public/js/app.js
+/public/js/app.js
