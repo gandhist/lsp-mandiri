@@ -20,7 +20,8 @@ class KantorController extends Controller
         $level = LevelKantor::whereIn('id',$idlevel)->get();
         $idprop = Kantor::select('prop')->groupBy('prop')->whereNotNull('prop')->get()->toArray();
         $prov = Provinsi::whereIn('id',$idprop)->get();
-        $kota = Kota::where('id','=','~')->get();
+        $idkota = Kantor::select('kota')->groupBy('kota')->whereNotNull('kota')->get()->toArray();
+        $kota = Kota::whereIn('id',$idkota)->get();
         $kantor = Kantor::orderBy('id','asc')->get();
         foreach ($kantor as $key) {
             $kantor->level = $key->levelkantor->nama_level;

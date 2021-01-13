@@ -1,45 +1,104 @@
 import React from "react";
 import TablePJK from "../global/TablePJK";
 
-// const a = "test";
-const ListKantor = () => {
-    const people = [
-        {
-            Aksi: "tris",
-            No: 21,
-            Nama_Ktr: "gsg",
-            Level_Ktr: "gsg",
-            Provinsi: "gsg",
-            Nama_Pimp: "gsg",
-            Kontak_P: "gsg",
-            Keterangan: "gsg",
-            U_Tambah: "gsg",
-            U_Ubah: "gsg"
-        },
-        {
-            Aksi: "tris",
-            No: 1,
-            Nama_Ktr: "gsg",
-            Level_Ktr: "gsg",
-            Provinsi: "gsg",
-            Nama_Pimp: "gsg",
-            Kontak_P: "gsg",
-            Keterangan: "gsg",
-            U_Tambah: "gsg",
-            U_Ubah: "gsg"
-        },
-        {
-            Aksi: "tris",
-            No: 1,
-            Nama_Ktr: "gsg",
-            Level_Ktr: "gsg",
-            Provinsi: "gsg",
-            Nama_Pimp: "gsg",
-            Kontak_P: "gsg",
-            Keterangan: "gsg",
-            U_Tambah: "gsg",
-            U_Ubah: "gsg"
+const ListKantor = () =>{
+    const [kantor, setKantor] = useState([]);
+    const [levelOpt, setlevelOpt ] = useState([]);
+    const [kantorOpt, setkantorOption ] = useState([]);
+    const [provOpt, setprovOption ] = useState([]);
+    const [kotaOpt, setkotaOption ] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const getKantor = async () => {
+        try {
+            await Api.getKantor().then(res => {
+                setKantor(res.data.data)
+                levelOption(res.data.data[0])
+                kantorOption(res.data.data[3])
+                provOption(res.data.data[1])
+                kotaOption(res.data.data[2])
+            })
+        } catch (error) {
+            console.error('asasd',error.message)
         }
+        finally {
+            setIsLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        getKantor()
+    }, [])
+
+    const levelOption = (params) => {
+        if(typeof params == 'undefined'){
+            console.log('null')
+        } else{
+            let opt = []
+            params.map((key, item) => {
+                opt.push({
+                    value:key.id,
+                    label:key.nama_level
+                })
+            })
+            setlevelOpt(opt)
+        }
+    }
+
+    const kantorOption = (params) => {
+        if(typeof params == 'undefined'){
+            console.log('null')
+        } else{
+            let opt = []
+            params.map((key, item) => {
+                opt.push({
+                    value:key.id,
+                    label:key.nama_kantor
+                })
+            })
+            setkantorOption(opt)
+        }
+    }
+
+    const provOption = (params) => {
+        if(typeof params == 'undefined'){
+            console.log('null')
+        } else{
+            let opt = []
+            params.map((key, item) => {
+                opt.push({
+                    value:key.id,
+                    label:key.nama
+                })
+            })
+            setprovOption(opt)
+        }
+    }
+
+    const kotaOption = (params) => {
+        if(typeof params == 'undefined'){
+            console.log('null')
+        } else{
+            let opt = []
+            params.map((key, item) => {
+                opt.push({
+                    value:key.id,
+                    label:key.nama
+                })
+            })
+            setkotaOption(opt)
+        }
+    }
+
+    const renderKantor = () => {
+        if(isLoading){
+            return(
+                <tr>
+                    <td colSpan='9'>Loading Data...</td>
+                </tr>
+            );
+        }
+    }
         // { name: "nick", status: "active" },
         // { name: "nick", status: "active" },
         // { name: "nick", status: "active" },
@@ -49,7 +108,7 @@ const ListKantor = () => {
         // { name: "nick", status: "active" },
         // { name: "nick", status: "active" },
         // { name: "desi", status: "active" }
-    ];
+
     return (
         <div>
             <div className="content-wrapper">
@@ -95,25 +154,19 @@ const ListKantor = () => {
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <div className="input-group customSelect2md">
-                                                            <select
-                                                                className="form-control select2"
-                                                                name="f_level"
-                                                                id="f_level"
-                                                            >
-                                                                {/* <option selected value="1">Level_Kantor</option> */}
-                                                            </select>
+                                                        <div className="input-group">
+                                                            <Select options={levelOpt} className="select2" placeholder='Level_Kantor' />
+                                                            {/* <select className="form-control select2" name="f_level" id="f_level">
+                                                                <option selected value="1">Level_Kantor</option>
+                                                            </select> */}
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div className="input-group customSelect2md">
-                                                            <select
-                                                                className="form-control select2"
-                                                                name="f_provinsi"
-                                                                id="f_provinsi"
-                                                            >
-                                                                {/* <option value="1">Provinsi</option> */}
-                                                            </select>
+                                                        <div className="input-group">
+                                                            <Select options={provOpt} className="select2" placeholder='Provinsi' />
+                                                            {/* <select className="form-control select2" name="f_provinsi" id="f_provinsi">
+                                                                <option value="1">Provinsi</option>
+                                                            </select> */}
                                                         </div>
                                                     </td>
                                                     <td>
@@ -139,26 +192,20 @@ const ListKantor = () => {
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <div className="input-group customSelect2md">
-                                                            <select
-                                                                className="form-control select2"
-                                                                name="f_kantor"
-                                                                id="f_kantor"
-                                                            >
-                                                                {/* <option selected value="1">Kantor</option> */}
-                                                            </select>
+                                                        <div className="input-group">
+                                                            <Select options={kantorOpt} className="select2" placeholder='Kantor' />
+                                                            {/* <select className="form-control select2" name="f_kantor" id="f_kantor">
+                                                                <option selected value="1">Kantor</option>
+                                                            </select> */}
                                                         </div>
                                                     </td>
 
                                                     <td>
-                                                        <div className="input-group customSelect2md">
-                                                            <select
-                                                                className="form-control select2"
-                                                                name="f_kota"
-                                                                id="f_kota"
-                                                            >
-                                                                {/* <option selected value="1">Kota</option> */}
-                                                            </select>
+                                                        <div className="input-group">
+                                                            <Select options={kotaOpt} className="select2" placeholder='Kota' />
+                                                            {/* <select className="form-control select2" name="f_kota" id="f_kota">
+                                                                <option selected value="1">Kota</option>
+                                                            </select> */}
                                                         </div>
                                                     </td>
 
@@ -233,7 +280,7 @@ const ListKantor = () => {
                                         <th>No</th>
                                         <th>Nama_Ktr</th>
                                         <th>Level_Ktr</th>
-                                        <th>Provinsi</th>
+                                        <th>Prov</th>
                                         <th>Nama_Pimp</th>
                                         <th>Kontak_P</th>
                                         <th>Keterangan</th>
