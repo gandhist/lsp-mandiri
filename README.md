@@ -1,3 +1,6 @@
+## Pengumuman
+Library Sass jangan di upgrade (biar di versi 1.15.2) soalnya bikin error
+
 ## TODO LIST
 
 -   gandhi -> roles & middleware

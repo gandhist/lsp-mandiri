@@ -6,7 +6,7 @@ import Navigation from '../templates/Navigation';
 import ListKantor from '../kantor/ListKantor';
 
 const Index = () =>{
-    
+
     return(
         <div >
             <Header />

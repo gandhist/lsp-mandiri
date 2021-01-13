@@ -1,4 +1,5 @@
 import React from "react";
+import TablePJK from "../global/TablePJK";
 
 // const a = "test";
 const ListKantor = () => {
@@ -190,6 +191,38 @@ const ListKantor = () => {
                             {{-- end of sub menu  --}} */}
                             {/* {{-- table data of car  --}} */}
                             {/* {{-- <div className="table-responsive"> --}} */}
+                            <TablePJK data={
+                                [{
+                                    0: 'a1',
+                                    1: 'b1',
+                                    2: 'c1',
+                                    3: 'd1',
+                                    4: 'e1',
+                                    5: 'f1'
+                                },{
+                                    0: 'a2',
+                                    1: 'b2',
+                                    2: 'c2',
+                                    3: 'd2',
+                                    4: 'e2',
+                                    5: 'f2'
+                                },{
+                                    0: 'a3',
+                                    1: 'b3',
+                                    2: 'c3',
+                                    3: 'd3',
+                                    4: 'e3',
+                                    5: 'f3'
+                                },]
+                            } />
+
+                            <select name="" id="" defaultValue={'4'}>
+                                <option value="1"></option>
+                                <option value="2"></option>
+                                <option value="3"></option>
+                                <option value="4"></option>
+                            </select>
+
                             <table
                                 id="data-tables"
                                 className="table table-striped table-bordered dataTable customTable"

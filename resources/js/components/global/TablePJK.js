@@ -1,10 +1,37 @@
-from React import 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
+import $ from 'jquery'
+// import '../../../css/jquery.dataTables.css';
 
-const TablePJK = () => {
+// require( 'datatables.net' )( window, $ );
+$.DataTable = require('datatables.net-bs');
+
+const TablePJK = ({ data }) => {
+
+    // const [data, setData] = useState({data})
+    const table = useRef()
+
+    useEffect(() => {
+        const $el = $(table.current)
+
+        $el.DataTable({
+            data: data,
+            columns: [
+                { title: "Name" },
+                { title: "Position" },
+                { title: "Office" },
+
+                { title: "Extn." },
+                { title: "Start date" },
+                { title: "Salary" }
+            ]
+        })
+    })
+
     return (
-        <div>
-
-        </div>
+        <Fragment>
+            <table ref={ table } style={{width: '100%'}}>
+            </table>
+        </Fragment>
     )
 }
 
