@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // controller
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KantorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,8 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('find/{id}',[UserController::class, 'find']);
         Route::post('store',[UserController::class, 'store']);
         Route::patch('update',[UserController::class, 'update']);
+    });
+    Route::group(['prefix' => 'kantor'], function () {
+        Route::get('',[KantorController::class, 'index']);
     });
 });

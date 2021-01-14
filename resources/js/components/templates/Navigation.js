@@ -16,7 +16,7 @@ const Navigation = () => {
                     {/* Sidebar user panel */}
                     <div className="user-panel">
                     <div className="pull-left image">
-                        <img src="AdminLTE-2.3.11/dist/img/avatar.png" className="img-circle" alt={user.data.name} />
+                        <img src="/AdminLTE-2.3.11/dist/img/avatar.png" className="img-circle" alt={user.data.name} />
                     </div>
                     <div className="pull-left info">
                         <p>{user.data.name}</p>

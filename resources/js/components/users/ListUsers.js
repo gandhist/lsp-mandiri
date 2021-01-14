@@ -110,7 +110,7 @@ const ListUsers = () => {
 
 
 
-        </Index>
+        </Index >
     );
 }
 

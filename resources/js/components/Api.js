@@ -28,5 +28,6 @@ export default {
     getListUsers: () => axios.get(`${BASE_URL}/user/list`, headers),
     storeUser: (data) => axios.post(`${BASE_URL}/user/store`, data, headers),
     updateUser: (data) => axios.post(`${BASE_URL}/user/update`, data, headers),
+    getKantor: () => axios.get(`${BASE_URL}/kantor`, headers),
 
 }
