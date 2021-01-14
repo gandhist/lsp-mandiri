@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Select from 'react-select';
+import './Kantor.css';
+import Api from '../Api';
 import TablePJK from "../global/TablePJK";
 
 const ListKantor = () =>{
@@ -97,6 +100,31 @@ const ListKantor = () =>{
                     <td colSpan='9'>Loading Data...</td>
                 </tr>
             );
+        } else {
+            if(kantor[3].length === 0){
+                <tr>
+                    <td colSpan='10'>No Data in Database</td>
+                </tr>
+            }
+            else {
+                // foreach
+                return kantor[3].map(
+                    (key, index) => (
+                        <tr key={index}>
+                            <td></td>
+                            <td>{index+1}</td>
+                            <td>{key.nama_kantor}</td>
+                            <td>{key.levelkantor.nama_level}</td>
+                            <td>{key.provinsi.nama_singkat}</td>
+                            <td>{key.nama_pimp}</td>
+                            <td>{key.kontak_p}</td>
+                            <td>{key.keterangan}</td>
+                            <td>{key.created_r.name}</td>
+                            <td>{key.updated_r.name}</td>
+                        </tr>
+                    )
+                );
+            }
         }
     }
         // { name: "nick", status: "active" },
@@ -138,7 +166,6 @@ const ListKantor = () =>{
                             {/* <div className="alert alert-success alert-dismissible fade in"> {{ session()->get('message') }}
                                 <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
                             </div> */}
-
                             {/* sub menu */}
                             <form
                                 action="/kantor/filter"
@@ -263,13 +290,6 @@ const ListKantor = () =>{
                                 },]
                             } />
 
-                            <select name="" id="" defaultValue={'4'}>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                <option value="4"></option>
-                            </select>
-
                             <table
                                 id="data-tables"
                                 className="table table-striped table-bordered dataTable customTable"
@@ -289,20 +309,7 @@ const ListKantor = () =>{
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {people.map((person, index) => (
-                                        <tr key={index}>
-                                            <td>{person.Aksi}</td>
-                                            <td>{person.No}</td>
-                                            <td>{person.Nama_Ktr}</td>
-                                            <td>{person.Level_Ktr}</td>
-                                            <td>{person.Provinsi}</td>
-                                            <td>{person.Nama_Pimp}</td>
-                                            <td>{person.Kontak_P}</td>
-                                            <td>{person.Keterangan}</td>
-                                            <td>{person.U_Tambah}</td>
-                                            <td>{person.U_Ubah}</td>
-                                        </tr>
-                                    ))}
+                                    { renderKantor() }
                                 </tbody>
                             </table>
                         </div>

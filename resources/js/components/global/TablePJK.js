@@ -25,7 +25,7 @@ const TablePJK = ({ data }) => {
                 { title: "Salary" }
             ]
         })
-    })
+    }, [])
 
     return (
         <Fragment>
