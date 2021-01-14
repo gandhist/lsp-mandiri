@@ -100916,6 +100916,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global_TablePJK__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../global/TablePJK */ "./resources/js/components/global/TablePJK.js");
 
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -100939,35 +100945,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ListKantor = function ListKantor() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var initialState = {
+    kantor: [],
+    levelOpt: [],
+    kantorOpt: [],
+    provOpt: [],
+    kotaOpt: [],
+    isLoading: true
+  };
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialState),
       _useState2 = _slicedToArray(_useState, 2),
-      kantor = _useState2[0],
-      setKantor = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      levelOpt = _useState4[0],
-      setlevelOpt = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      kantorOpt = _useState6[0],
-      setkantorOption = _useState6[1];
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
-      _useState8 = _slicedToArray(_useState7, 2),
-      provOpt = _useState8[0],
-      setprovOption = _useState8[1];
-
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
-      _useState10 = _slicedToArray(_useState9, 2),
-      kotaOpt = _useState10[0],
-      setkotaOption = _useState10[1];
-
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
-      _useState12 = _slicedToArray(_useState11, 2),
-      isLoading = _useState12[0],
-      setIsLoading = _useState12[1];
+      data = _useState2[0],
+      setData = _useState2[1];
 
   var getKantor = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -100978,7 +100968,11 @@ var ListKantor = function ListKantor() {
               _context.prev = 0;
               _context.next = 3;
               return _Api__WEBPACK_IMPORTED_MODULE_4__["default"].getKantor().then(function (res) {
-                setKantor(res.data.data);
+                setData(function (prevData) {
+                  return _objectSpread(_objectSpread({}, prevData), {}, {
+                    kantor: res.data.data
+                  });
+                });
                 levelOption(res.data.data[0]);
                 kantorOption(res.data.data[3]);
                 provOption(res.data.data[1]);
@@ -100996,7 +100990,11 @@ var ListKantor = function ListKantor() {
 
             case 8:
               _context.prev = 8;
-              setIsLoading(false);
+              setData(function (prevData) {
+                return _objectSpread(_objectSpread({}, prevData), {}, {
+                  isLoading: false
+                });
+              });
               return _context.finish(8);
 
             case 11:
@@ -101027,7 +101025,11 @@ var ListKantor = function ListKantor() {
           label: key.nama_level
         });
       });
-      setlevelOpt(opt);
+      setData(function (prevData) {
+        return _objectSpread(_objectSpread({}, prevData), {}, {
+          levelOpt: opt
+        });
+      });
     }
   };
 
@@ -101042,7 +101044,11 @@ var ListKantor = function ListKantor() {
           label: key.nama_kantor
         });
       });
-      setkantorOption(opt);
+      setData(function (prevData) {
+        return _objectSpread(_objectSpread({}, prevData), {}, {
+          kantorOpt: opt
+        });
+      });
     }
   };
 
@@ -101057,7 +101063,11 @@ var ListKantor = function ListKantor() {
           label: key.nama
         });
       });
-      setprovOption(opt);
+      setData(function (prevData) {
+        return _objectSpread(_objectSpread({}, prevData), {}, {
+          provOpt: opt
+        });
+      });
     }
   };
 
@@ -101072,29 +101082,36 @@ var ListKantor = function ListKantor() {
           label: key.nama
         });
       });
-      setkotaOption(opt);
+      setData(function (prevData) {
+        return _objectSpread(_objectSpread({}, prevData), {}, {
+          kotaOpt: opt
+        });
+      });
     }
   };
 
   var renderKantor = function renderKantor() {
-    if (isLoading) {
+    // console.log(data)
+    if (data.isLoading) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
-        colSpan: "9"
+        colSpan: "10"
       }, "Loading Data..."));
-    } else {
-      if (kantor[3].length === 0) {
+    } else if (typeof data.kantor[3] !== 'undefined') {
+      if (data.kantor[3].length === 0) {
         /*#__PURE__*/
         react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
           colSpan: "10"
         }, "No Data in Database"));
       } else {
         // foreach
-        return kantor[3].map(function (key, index) {
+        return data.kantor[3].map(function (key, index) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
             key: index
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, key.nama_kantor), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, key.levelkantor.nama_level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, key.provinsi.nama_singkat), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, key.nama_pimp), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, key.kontak_p), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, key.keterangan), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, key.created_r.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, key.updated_r.name));
         });
       }
+    } else {
+      console.log(data);
     }
   }; // { name: "nick", status: "active" },
   // { name: "nick", status: "active" },
@@ -101147,13 +101164,13 @@ var ListKantor = function ListKantor() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "input-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    options: levelOpt,
+    options: data.levelOpt,
     className: "select2",
     placeholder: "Level_Kantor"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "input-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    options: provOpt,
+    options: data.provOpt,
     className: "select2",
     placeholder: "Provinsi"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
@@ -101169,13 +101186,13 @@ var ListKantor = function ListKantor() {
   }), "Reset"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "input-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    options: kantorOpt,
+    options: data.kantorOpt,
     className: "select2",
     placeholder: "Kantor"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "input-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    options: kotaOpt,
+    options: data.kotaOpt,
     className: "select2",
     placeholder: "Kota"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
