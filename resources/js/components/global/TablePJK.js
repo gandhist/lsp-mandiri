@@ -29,7 +29,7 @@ const TablePJK = ({ data }) => {
 
     return (
         <Fragment>
-            <table ref={ table } style={{width: '100%'}}>
+            <table ref={ table } style={{width: '100%'}} className="table table-striped table-bordered dataTable customTable">
             </table>
         </Fragment>
     )

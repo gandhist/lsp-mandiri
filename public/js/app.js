@@ -100857,7 +100857,8 @@ var TablePJK = function TablePJK(_ref) {
     ref: table,
     style: {
       width: '100%'
-    }
+    },
+    className: "table table-striped table-bordered dataTable customTable"
   }));
 };
 
