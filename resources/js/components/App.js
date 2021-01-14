@@ -1,7 +1,7 @@
-import React, {Suspense} from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import {RecoilRoot} from 'recoil';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { RecoilRoot } from 'recoil';
 import Authenticated from './middleware/Authenticated';
 
 
@@ -12,6 +12,7 @@ import Dashboard from "./Dashboard";
 import Kantor from "./kantor/index";
 import ListUsers from "./users/ListUsers";
 import UsersAdd from "./users/Add";
+import UsersEdit from "./users/Edit";
 
 
 const App = () => {
@@ -31,7 +32,7 @@ const App = () => {
                             <Route exact path="/">
                                 <Dashboard />
                             </Route>
-                            
+
                             <Route exact path="/kantor">
                                 <Kantor />
                             </Route>
@@ -42,6 +43,9 @@ const App = () => {
                             </Route>
                             <Route exact path="/users/add">
                                 <UsersAdd />
+                            </Route>
+                            <Route exact path="/users/edit/:id">
+                                <UsersEdit />
                             </Route>
                             {/* end of if role administrator */}
                         </Authenticated>

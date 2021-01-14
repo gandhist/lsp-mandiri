@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Index from './index';
 import Api from '../Api';
@@ -19,12 +19,12 @@ const Add = () => {
         setIsLoading(true)
         try {
             let data = {
-                name : name,
-                username : username,
-                email : email,
-                password : password,
-                role_id : role,
-                is_active : active,
+                name: name,
+                username: username,
+                email: email,
+                password: password,
+                role_id: role,
+                is_active: active,
             }
             await Api.storeUser(data).then(
                 (res) => {
@@ -85,7 +85,7 @@ const Add = () => {
                 </div>
                 {/* /.box-body */}
                 <div className="box-footer">
-                    <button onClick={handleSubmit} type="button" name="submit" disabled={isLoading} className="btn btn-primary">{ isLoading ? 'Processing...' : 'Submit'}</button>
+                    <button onClick={handleSubmit} type="button" name="submit" disabled={isLoading} className="btn btn-primary">{isLoading ? 'Processing...' : 'Submit'}</button>
                 </div>
             </form>
         </Index>
