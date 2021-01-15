@@ -151,15 +151,6 @@ const ListKantor = () =>{
             console.log(data)
         }
     }
-        // { name: "nick", status: "active" },
-        // { name: "nick", status: "active" },
-        // { name: "nick", status: "active" },
-        // { name: "nick", status: "active" },
-        // { name: "nick", status: "active" },
-        // { name: "nick", status: "active" },
-        // { name: "nick", status: "active" },
-        // { name: "nick", status: "active" },
-        // { name: "desi", status: "active" }
 
     return (
         <div>

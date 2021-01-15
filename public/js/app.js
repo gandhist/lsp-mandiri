@@ -101113,16 +101113,7 @@ var ListKantor = function ListKantor() {
     } else {
       console.log(data);
     }
-  }; // { name: "nick", status: "active" },
-  // { name: "nick", status: "active" },
-  // { name: "nick", status: "active" },
-  // { name: "nick", status: "active" },
-  // { name: "nick", status: "active" },
-  // { name: "nick", status: "active" },
-  // { name: "nick", status: "active" },
-  // { name: "nick", status: "active" },
-  // { name: "desi", status: "active" }
-
+  };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "content-wrapper"
