@@ -80,6 +80,13 @@ class UserController extends Controller
             return $request->user();
     }
 
+    // get by id
+    public function find($id){
+        $data = User::find($id);
+        return ResponseFormatter::success($data, 'data ditemukan');
+
+    }
+
     // store 
     public function store(Request $request){
         $request->validate([
@@ -87,6 +94,22 @@ class UserController extends Controller
             'email' => ['required','string','email','max:255','unique:users'],
         ]);
         $user = User::create([
+            'username' => $request->username,
+            'name' => $request->name,
+            'email' => $request->email,
+            'hint' => $request->password,
+            'password' => Hash::make($request->password),
+        ]);
+        return ResponseFormatter::success($user,'Data Berhasil di input');
+    }
+
+    // update user
+    public function update(Request $request){
+        $request->validate([
+            'name' => ['required','string','max:255'],
+            'email' => ['required','string','email','max:255','unique:users'],
+        ]);
+        $user = User::find($request->id)->update([
             'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,

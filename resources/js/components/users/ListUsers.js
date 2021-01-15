@@ -1,58 +1,71 @@
-import React, {useEffect, useState} from 'react'
-import {NavLink, Link} from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { NavLink, Link } from 'react-router-dom';
 import Index from './index';
 import Api from '../Api';
 
 
 
-const ListUsers = () =>{
+const ListUsers = () => {
 
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const getUser = async () => {
+    // const getUser = async () => {
+    //     try {
+    //         await Api.getListUsers().then(res => {
+    //             setUsers(res.data.data)
+    //         })
+    //     } catch (error) {
+    //         console.error('asasd',error.message)
+    //     }
+    //     finally {
+    //         setIsLoading(false)
+    //     }
+    // }
+
+    useEffect(() => {
         try {
-            await Api.getListUsers().then(res => {
+            Api.getListUsers().then(res => {
                 setUsers(res.data.data)
             })
         } catch (error) {
-            console.error('asasd',error.message)
+            console.error('asasd', error.message)
         }
         finally {
             setIsLoading(false)
         }
-    }
-
-    useEffect(() => {
-        getUser()
     }, [])
 
     const renderListUsers = () => {
-        if(isLoading){
-            return(
+        if (isLoading) {
+            return (
                 <tr>
                     <td colSpan='9'>Loading Data...</td>
                 </tr>
             );
         }
-        else{
-            if(users.length === 0){
+        else {
+            if (users.length === 0) {
                 <tr>
                     <td colSpan='9'>No Data in Database</td>
                 </tr>
             }
             else {
+                console.log(users)
                 // foreach
                 return users.map(
                     (user, index) => (
                         <tr key={index}>
-                            <td>{index+1}</td>
+                            <td>{index + 1}</td>
                             <td>{user.name}</td>
                             <td>{user.username}</td>
                             <td>{user.username}</td>
                             <td>{user.created_at}</td>
                             <td>{user.created_at}</td>
-                            <td>{user.created_at}</td>
+                            <td>
+                                <Link to={`/users/edit/${user.id}`} className="btn btn-warning btn-xs"><span className='glyphicon glyphicon-pencil'></span></Link>
+                                <button className='btn btn-xs btn-danger'  ><span className='glyphicon glyphicon-trash'></span></button>
+                            </td>
                             <td>{user.created_at}</td>
                             <td>{user.created_at}</td>
                         </tr>
@@ -68,17 +81,17 @@ const ListUsers = () =>{
             <div className="box-body">
 
                 {/* <div className="alert alert-success alert-dismissible fade in"> {{ session()->get('message') }}
-                    <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
-                </div> */}
-                <div style={{marginBottom: '20px'}}>
+                                <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            </div> */}
+                <div style={{ marginBottom: '20px' }}>
                     {/* <Add /> */}
                     <NavLink to="/users/add" className="btn bg-olive"><span>Input</span></NavLink>
                 </div>
                 {/* sub menu */}
-                <table  className="table table-striped table-bordered" cellSpacing="0" width="100%">
+                <table className="table table-striped table-bordered" cellSpacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th>No.</th>
+                            <th>Noaa</th>
                             <th>Nama</th>
                             <th>User Name</th>
                             <th>Jabatan</th>
@@ -95,7 +108,9 @@ const ListUsers = () =>{
                 </table>
             </div>
 
-        </Index>
+
+
+        </Index >
     );
 }
 

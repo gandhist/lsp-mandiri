@@ -3,9 +3,9 @@ import React from 'react';
 import Header from './templates/Header';
 import Navigation from './templates/Navigation';
 
-const Dashboard = () =>{
-    
-    return(
+const Dashboard = () => {
+
+    return (
         <div >
             <Header />
             <Navigation />
