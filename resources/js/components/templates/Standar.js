@@ -22,7 +22,7 @@ const Standar = ({ name, children, crumbread = [], back = '/' }) =>{
             <Header />
             <Navigation />
             <div>
-                <div className="content-wrapper">
+                <div className="content-wrapper" style={{minHeight:"100vh"}}>
                     <section className="content-header">
                         <h1>
                             {
@@ -62,7 +62,7 @@ const Standar = ({ name, children, crumbread = [], back = '/' }) =>{
                     {/* content */}
                     <section className="content">
                         {/* Default box */}
-                        <div className="box box-content">
+                        <div className="box box-content" style={{minHeight:"93vh"}}>
                             <div className="box-body">
                                 {children}
                             </div>
