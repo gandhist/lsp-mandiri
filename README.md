@@ -1,6 +1,5 @@
 ## Pengumuman
-Library Sass jangan di upgrade (biar di versi 1.15.2) soalnya bikin error
-
+Kalo mau bikin view baru, bisa pake component 'Standar' biar sama
 ## TODO LIST
 
 -   gandhi -> roles & middleware
