@@ -37,6 +37,11 @@ const Navigation = () => {
                         </NavLink>
                     </li>
                     <li className="treeview">
+                        <NavLink exact to="/badanusaha">
+                        <i className="fa fa-building" /> <span>Badan Usaha</span>
+                        </NavLink>
+                    </li>
+                    <li className="treeview">
                         <a href="#">
                         <i className="fa fa-gear" /> <span>Referensi</span>
                         <span className="pull-right-container">

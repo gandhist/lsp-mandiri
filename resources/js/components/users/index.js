@@ -1,34 +1,15 @@
 import React from "react";
-import Header from '../templates/Header';
-import Navigation from '../templates/Navigation';
+import Standar from "../templates/Standar";
+import ListUsers from "./ListUsers";
 
-const Index = ({title, children}) => {
+const Index = () => {
     return (
-        <div>
-            <Header />
-            <Navigation />
-            <div className="content-wrapper">
-                <section className="content-header">
-                    <h1>
-                        {title}
-                    </h1>
-                    <ol className="breadcrumb">
-                        <li><a href="#"><i className="fa fa-dashboard"></i> Home</a></li>
-                        <li className="active"><a href="#"> Users</a></li>
-                    </ol>
-                </section>
-                {/* content */}
-                <section className="content">
-                    {/* Default box */}
-                    <div className="box box-content">
-                        {children}
-                    </div>
-                    {/* <!-- /.box --> */}
-                </section>
-                {/* end of content */}
-            </div>
-            {/* <ListUser /> */}
-        </div>
+        <Standar
+            name="User Management"
+            crumbread={['User']}
+        >
+            <ListUsers />
+        </Standar>
     );
 }
 

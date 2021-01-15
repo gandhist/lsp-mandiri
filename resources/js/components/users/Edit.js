@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
-import Index from './index';
 import Api from '../Api';
+import Standar from "../templates/Standar";
 
 
 const Edit = () => {
@@ -117,10 +117,11 @@ const Edit = () => {
     }, [id])
 
     return (
-        <Index title="Edit User">
-            {/* <div errClass="box-header with-border">
-                <h3 className="box-title">Edit User</h3>
-            </div> */}
+        <Standar
+            name="Edit User"
+            crumbread={['User', 'Edit']}
+            back='users'
+        >
             <form role="form" action="#">
                 <div className="box-body">
                     <div className={`${error.name.errClass}`}  >
@@ -158,7 +159,7 @@ const Edit = () => {
                     <button onClick={handelUpdate} type="button" name="submit" disabled={isLoading} className="btn btn-primary">{isLoading ? 'Processing...' : 'Submit'}</button>
                 </div>
             </form>
-        </Index >
+        </Standar>
     );
 }
 

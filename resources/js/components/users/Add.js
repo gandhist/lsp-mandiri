@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Index from './index';
 import Api from '../Api';
+import Standar from "../templates/Standar";
 
 
 const Add = () => {
@@ -47,10 +47,11 @@ const Add = () => {
 
     }
     return (
-        <Index title="create user">
-            <div className="box-header with-border">
-                <h3 className="box-title">Create User</h3>
-            </div>
+        <Standar
+            name='Create User'
+            crumbread={['User', 'Create']}
+            back='users'
+        >
             {/* /.box-header */}
             {/* form start */}
             <form role="form" action="#">
@@ -88,7 +89,7 @@ const Add = () => {
                     <button onClick={handleSubmit} type="button" name="submit" disabled={isLoading} className="btn btn-primary">{isLoading ? 'Processing...' : 'Submit'}</button>
                 </div>
             </form>
-        </Index>
+        </Standar>
     );
 }
 

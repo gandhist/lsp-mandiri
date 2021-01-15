@@ -1,17 +1,21 @@
 import React from 'react';
+import Standar from '../templates/Standar'
+import ListKantor from './ListKantor';
 
-import Header from '../templates/Header';
-import Navigation from '../templates/Navigation';
-
-import ListKantor from '../kantor/ListKantor';
+// Untuk cara pakai component Standar
+// Bisa dilihar di folder global
 
 const Index = () =>{
 
     return(
         <div >
-            <Header />
-            <Navigation />
-            <ListKantor />
+            <Standar
+                name="Kantor PJK3 Mandiri"
+                crumbread={['Daftar Kantor']}
+            >
+                <ListKantor />
+            </Standar>
+
         </div>
     );
 }

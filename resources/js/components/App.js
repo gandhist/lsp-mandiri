@@ -10,10 +10,10 @@ import ForgotPassword from "./ForgotPassword";
 import NotFound from "./templates/NotFound";
 import Dashboard from "./Dashboard";
 import Kantor from "./kantor/index";
-import ListUsers from "./users/ListUsers";
+import Users from "./users/index";
 import UsersAdd from "./users/Add";
 import UsersEdit from "./users/Edit";
-
+import BadanUsaha from "./badanusaha"
 
 const App = () => {
     return (
@@ -37,9 +37,13 @@ const App = () => {
                                 <Kantor />
                             </Route>
 
+                            <Route exact path="/badanusaha">
+                                <BadanUsaha />
+                            </Route>
+
                             {/* if role administrator */}
                             <Route exact path="/users">
-                                <ListUsers />
+                                <Users />
                             </Route>
                             <Route exact path="/users/add">
                                 <UsersAdd />

@@ -1,15 +1,15 @@
 import React from 'react';
-
-import Header from './templates/Header';
-import Navigation from './templates/Navigation';
+import Standar from './templates/Standar';
 
 const Dashboard = () => {
 
     return (
-        <div >
-            <Header />
-            <Navigation />
-        </div>
+        <Standar
+            name='Dashboard'
+            back={false}
+        >
+            Dashboard
+        </Standar>
     );
 }
 
