@@ -4,8 +4,8 @@ Kalo mau bikin view baru, bisa pake component 'Standar' biar sama
 
 -   gandhi -> roles & middleware
 -   nanda -> select2 replacing with [ReactSelect](https://react-select.com/hom), think about chaining on older features
--   rafi -> datatable to [ReactDatatable](https://jbetancur.github.io/react-data-table-component), (header datatable colors looks like pjk3 datatables)
--   CRUD for kantor, badan usaha, ijin, personil, dok personil, tim produksi, tim marketing, gol harga marketing
+-   [DONE] rafi -> datatable to [ReactDatatable](https://jbetancur.github.io/react-data-table-component), (header datatable colors looks like pjk3 datatables) 
+-   rafi -> CRUD for kantor, badan usaha, ijin, personil, dok personil, tim produksi, tim marketing, gol harga marketing
 -   styling every single form and components
 -   hot reload while run "npm run watch-poll" view on browser not rendering, missconfiguration in webpack or laravel mix
 -   https://react-bootstrap-v3.netlify.app/ bootstrap v3.x
